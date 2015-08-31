@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>订单详情</title>
+	<link href="css/mui.min.css" rel="stylesheet"/>
+	<link href="css/style.css" rel="stylesheet"/>
+
+
+</head>
+<body>
+
+
+	<nav class="mui-bar mui-bar-tab">
+		<a class="mui-tab-item" href="index.html">
+			<span class="mui-icon mui-icon-home"></span>
+			<span class="mui-tab-label">首页</span>
+		</a>
+		<a class="mui-tab-item" href="collect.html">
+			<span class="mui-icon mui-icon-starhalf"></span>
+			<span class="mui-tab-label">收藏</span>
+		</a>
+		<a class="mui-tab-item mui-active" href="order.html">
+			<span class="mui-icon mui-icon-bars"><span class="mui-badge">9</span></span>
+			<span class="mui-tab-label">订单</span>
+		</a>
+		<a class="mui-tab-item" href="user.html">
+			<span class="mui-icon mui-icon-person"></span>
+			<span class="mui-tab-label">我的</span>
+		</a>
+	</nav>
+
+	<div class="mui-content content order_detail">
+
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell">
+				订单号：123455 
+				<span class="mui-pull-right">2015-08-30 21:11</span>
+			</li>
+		</ul>
+
+		<ul class="mui-table-view mui-table-view-chevron">
+			<li class="mui-table-view-cell mui-collapse mui-active">
+				<a class="mui-navigate-right" href="#">菜品列表</a>
+				<ul class="mui-table-view mui-table-view-chevron">
+					<li class="mui-table-view-cell">
+						猪大肠饭(中)
+						<span class="mui-pull-right"><em>15.20</em> 元</span>
+						<span class="mui-posa-right">2 份</span>
+					</li>
+					<li class="mui-table-view-cell">
+						猪大肠饭(中)
+						<span class="mui-pull-right"><em>15.20</em> 元</span>
+						<span class="mui-posa-right">2 份</span>
+					</li>
+					<li class="mui-table-view-cell">
+						猪大肠饭(中)
+						<span class="mui-pull-right"><em>15.20</em> 元</span>
+						<span class="mui-posa-right">2 份</span>
+					</li>
+					<li class="mui-table-view-cell">
+						猪大肠饭(中)
+						<span class="mui-pull-right"><em>15.20</em> 元</span>
+						<span class="mui-posa-right">2 份</span>
+					</li>
+				</ul>
+			</li>
+			<li class="mui-table-view-cell">
+				总计：
+				<span class="mui-pull-right"><em><b>92</b>.60</em> 元</span>
+				<span class="mui-posa-right">8 份</span>
+			</li>
+			
+		</ul>
+
+		<ul class="mui-table-view ">
+			<li class="mui-table-view-cell mui-collapse mui-active">
+				<a class="mui-navigate-right" href="#">订单信息</a>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">姓名：<span class="mui-pull-right">jiaojiao</span></li>
+					<li class="mui-table-view-cell">电话：<span class="mui-pull-right">13730300000</span></li>
+					<li class="mui-table-view-cell">地址：<span class="mui-pull-right">宝安区 — 张家口桥东</span></li>
+					<li class="mui-table-view-cell">订单状态：
+						<span class="mui-pull-right" style="color:#f77320;">用户取消</span>
+					</li>
+				</ul>
+			</li>
+			
+		</ul>
+
+		<ul class="mui-table-view ">
+			<li class="mui-table-view-cell mui-collapse mui-active">
+				<a class="mui-navigate-right" href="#">配送信息</a>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">配送时间：<span class="mui-pull-right">2015-08-30 21:00</span></li>
+					<li class="mui-table-view-cell">配送备注：<span class="mui-pull-right">不加大蒜，不要辣椒</span></li>
+					<li class="mui-table-view-cell">付款方式：<span class="mui-pull-right">货到付款</span></li>
+					<li class="mui-table-view-cell">优惠活动：<span class="mui-pull-right">减5</span></li>
+				</ul>
+			</li>
+			
+		</ul>
+				
+
+	</div>
+
+	
+
+	<script src="js/mui.min.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript">
+    	//mui 初始化
+    	mui.init();
+		//通过config接口注入权限验证配置
+		wx.config({
+		    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+		    appId: '', // 必填，公众号的唯一标识
+		    timestamp: '<?php echo time();?>', // 必填，生成签名的时间戳
+		    nonceStr: '<?php echo $nonceStr;?>', // 必填，生成签名的随机串
+		    signature: '<?php echo $signature;?>',// 必填，签名
+		    jsApiList: [] // 必填，需要使用的JS接口列表
+		});
+		//通过ready接口处理成功验证
+		wx.ready(function(){
+			// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后
+		});
+
+	</script>
+
+</body>
+</html>

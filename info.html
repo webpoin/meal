@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>菜品详情</title>
+	<link href="css/mui.min.css" rel="stylesheet"/>
+	<link href="css/style.css" rel="stylesheet"/>
+
+
+</head>
+<body>
+
+
+	<nav class="mui-bar gotopay">
+		<span>共 <b>20</b> 件， 总额：<em>48.00</em> 元</span>
+		<a class="mui-btn mui-btn-warning">去结算</a>
+	</nav>
+
+	<nav class="mui-bar mui-bar-tab">
+		<a class="mui-tab-item mui-active" href="#">
+			<span class="mui-icon mui-icon-home"></span>
+			<span class="mui-tab-label">首页</span>
+		</a>
+		<a class="mui-tab-item" href="#">
+			<span class="mui-icon mui-icon-starhalf"></span>
+			<span class="mui-tab-label">收藏</span>
+		</a>
+		<a class="mui-tab-item" href="#">
+			<span class="mui-icon mui-icon-bars"><span class="mui-badge">9</span></span>
+			<span class="mui-tab-label">订单</span>
+		</a>
+		<a class="mui-tab-item" href="#">
+			<span class="mui-icon mui-icon-person"></span>
+			<span class="mui-tab-label">我的</span>
+		</a>
+	</nav>
+
+
+	<div class="mui-content content">
+		<div id="slider" class="mui-slider" >
+			<div class="mui-slider-group mui-slider-loop">
+				<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<img src="images/yuantiao.jpg">
+					</a>
+				</div>
+				<!-- 第一张 -->
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="images/shuijiao.jpg">
+					</a>
+				</div>
+				<!-- 第二张 -->
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="images/muwu.jpg">
+					</a>
+				</div>
+				<!-- 第三张 -->
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="images/cbd.jpg">
+					</a>
+				</div>
+				<!-- 第四张 -->
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="images/yuantiao.jpg">
+					</a>
+				</div>
+				<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<img src="images/shuijiao.jpg">
+					</a>
+				</div>
+			</div>
+			<div class="mui-slider-indicator">
+				<div class="mui-indicator mui-active"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+			</div>
+		</div>
+		<div class="mui-content-padded">
+
+			<h4>肉香满溢比萨</h4>
+
+			<h5 class="info_price">单价：<em><b>15</b>.20</em> 元</h5>
+			
+			
+			<div class="info_count">
+				<div class="mui-numbox">
+					<button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+					<input id="testBox" class="mui-numbox-input" type="number" />
+					<button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+				</div>
+				<button class="mui-btn mui-btn-primary" style="padding: 7px 12px;">去结算</button>
+				<button class="mui-btn mui-btn-warning" style="padding: 7px 12px;">先看看</button>
+											
+			</div>
+
+		</div>
+
+		<div class="mui-content-padded">
+			<br>
+			<h4>菜品详情</h4>
+			
+
+			<p>这是图片放大预览示例，点击如下图片体验全屏预览功能</p>
+			<p>
+				<img src="images/yuantiao.jpg" data-preview-src="" data-preview-group="1" />
+				<img src="images/muwu.jpg" data-preview-src="" data-preview-group="1" />
+				<img src="images/shuijiao.jpg" data-preview-src="" data-preview-group="1" />
+				<img src="images/yuantiao.jpg" data-preview-src="" data-preview-group="1" />
+				<img src="images/muwu.jpg" data-preview-src="" data-preview-group="1" />
+				<img src="images/shuijiao.jpg" data-preview-src="" data-preview-group="1" />
+			
+			</p>
+		</div>
+	</div>
+
+	
+
+	<script src="js/mui.min.js"></script>
+	<script src="js/mui.zoom.js"></script>
+	<script src="js/mui.previewimage.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript">
+		mui.init()
+    	//mui 初始化
+    	mui.previewImage();
+    	mui("#slider").slider({
+			interval: 5000
+		});
+		//通过config接口注入权限验证配置
+		wx.config({
+		    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+		    appId: '', // 必填，公众号的唯一标识
+		    timestamp: '<?php echo time();?>', // 必填，生成签名的时间戳
+		    nonceStr: '<?php echo $nonceStr;?>', // 必填，生成签名的随机串
+		    signature: '<?php echo $signature;?>',// 必填，签名
+		    jsApiList: [] // 必填，需要使用的JS接口列表
+		});
+		//通过ready接口处理成功验证
+		wx.ready(function(){
+			// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后
+		});
+
+	</script>
+
+</body>
+</html>
