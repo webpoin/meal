@@ -1,170 +1,86 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-	<title>结算</title>
-	<link href="css/mui.min.css" rel="stylesheet"/>
-	<link href="css/style.css" rel="stylesheet"/>
+	<!-- <nav class="mui-bar gotopay">
+
+		<form class="pay_submit" action="pay_contact.html">
+			<button class="mui-btn">返回上级</button>
+			<button class="mui-btn submit" type="submit">下一步</button>
+		</form>
+	</nav> -->
 
 
-</head>
-<body>
+	<div class="mui-content content pay">
 
-	<nav class="mui-bar gotopay">
-		<span>共 <b>20</b> 件， 总额：<em>48.00</em> 元</span>
-		<a class="mui-btn mui-btn-warning" href="pay.html">确定支付</a>
-	</nav>
-
-
-	<nav class="mui-bar mui-bar-tab">
-		<a class="mui-tab-item" href="index.html">
-			<span class="mui-icon mui-icon-home"></span>
-			<span class="mui-tab-label">首页</span>
-		</a>
-		<a class="mui-tab-item" href="collect.html">
-			<span class="mui-icon mui-icon-starhalf"></span>
-			<span class="mui-tab-label">收藏</span>
-		</a>
-		<a class="mui-tab-item" href="order.html">
-			<span class="mui-icon mui-icon-bars"><span class="mui-badge">9</span></span>
-			<span class="mui-tab-label">订单</span>
-		</a>
-		<a class="mui-tab-item" href="user.html">
-			<span class="mui-icon mui-icon-person"></span>
-			<span class="mui-tab-label">我的</span>
-		</a>
-	</nav>
-
-	<div class="mui-content content order_detail pay">
-
-		<ul class="mui-table-view">
+		<ul class="mui-table-view mui-table-view-chevron mui-content-padded">
+			<li class="mui-table-view-divider"><i class="icon icon-recai"></i> 菜品列表</li>
+			
 			<li class="mui-table-view-cell">
-				订单号：123455 
-				<span class="mui-pull-right">2015-08-30 21:11</span>
-			</li>
-		</ul>
-
-		<ul class="mui-table-view mui-table-view-chevron">
-			<li class="mui-table-view-cell mui-collapse mui-active">
-				<a class="mui-navigate-right" href="#">菜品列表</a>
-				<ul class="mui-table-view mui-table-view-chevron">
-					<li class="mui-table-view-cell">
-						猪大肠饭(中)
-						<span class="mui-pull-right"><em>15.20</em> 元</span>
-						<div class="mui-numbox"  data-numbox-step='1' data-numbox-min='0'>
-							<button class="mui-numbox-btn-minus" type="button">-</button>
-							<input class="mui-numbox-input" type="number" />
-							<button class="mui-numbox-btn-plus" type="button">+</button>
-						</div>
-					</li>
-					<li class="mui-table-view-cell">
-						猪大肠饭(中)
-						<span class="mui-pull-right"><em>15.20</em> 元</span>
-						<div class="mui-numbox"  data-numbox-step='1' data-numbox-min='0'>
-							<button class="mui-numbox-btn-minus" type="button">-</button>
-							<input class="mui-numbox-input" type="number" />
-							<button class="mui-numbox-btn-plus" type="button">+</button>
-						</div>
-					</li>
-					<li class="mui-table-view-cell">
-						猪大肠饭(中)
-						<span class="mui-pull-right"><em>15.20</em> 元</span>
-						<div class="mui-numbox"  data-numbox-step='1' data-numbox-min='0'>
-							<button class="mui-numbox-btn-minus" type="button">-</button>
-							<input class="mui-numbox-input" type="number" />
-							<button class="mui-numbox-btn-plus" type="button">+</button>
-						</div>
-					</li>
-					<li class="mui-table-view-cell">
-						猪大肠饭(中)
-						<span class="mui-pull-right"><em>15.20</em> 元</span>
-						<div class="mui-numbox"  data-numbox-step='1' data-numbox-min='0'>
-							<button class="mui-numbox-btn-minus" type="button">-</button>
-							<input class="mui-numbox-input" type="number" />
-							<button class="mui-numbox-btn-plus" type="button">+</button>
-						</div>
-					</li>
-
-				</ul>
+				猪大肠饭(中)
+				<span class="mui-pull-right"><em>15.20</em> 元</span>
+				<div class="mui-numbox"  data-numbox-step='1' data-numbox-min='0'>
+					<button class="mui-numbox-btn-minus" type="button">-</button>
+					<input class="mui-numbox-input" type="number" value="2"/>
+					<button class="mui-numbox-btn-plus" type="button">+</button>
+				</div>
 			</li>
 			<li class="mui-table-view-cell">
+				猪大肠饭(中)
+				<span class="mui-pull-right"><em>15.20</em> 元</span>
+				<div class="mui-numbox"  data-numbox-step='1' data-numbox-min='0'>
+					<button class="mui-numbox-btn-minus" type="button">-</button>
+					<input class="mui-numbox-input" type="number" value="1"/>
+					<button class="mui-numbox-btn-plus" type="button">+</button>
+				</div>
+			</li>
+			<li class="mui-table-view-cell">
+				猪大肠饭(中)
+				<span class="mui-pull-right"><em>15.20</em> 元</span>
+				<div class="mui-numbox"  data-numbox-step='1' data-numbox-min='0'>
+					<button class="mui-numbox-btn-minus" type="button">-</button>
+					<input class="mui-numbox-input" type="number" value="1"/>
+					<button class="mui-numbox-btn-plus" type="button">+</button>
+				</div>
+			</li>
+			<li class="mui-table-view-cell">
+				猪大肠饭(中)
+				<span class="mui-pull-right"><em>15.20</em> 元</span>
+				<div class="mui-numbox"  data-numbox-step='1' data-numbox-min='0'>
+					<button class="mui-numbox-btn-minus" type="button">-</button>
+					<input class="mui-numbox-input" type="number" value="1"/>
+					<button class="mui-numbox-btn-plus" type="button">+</button>
+				</div>
+			</li>
+
+			<li class="mui-table-view-cell mui-checkbox mui-left">
+				<input name="checkbox1" type="checkbox" > 使用<em> [5元] </em>优惠券 
+				<span class="mui-pull-right">立省 <b>5</b> 元</span>
+			</li>
+			<li class="mui-table-view-cell mui-checkbox mui-left">
+				<input name="checkbox1" type="checkbox" > 使用积分抵扣现金
+				<span class="mui-pull-right">可用积分： <b>5</b> 个</span>
+			</li>
+
+
+			
+			<li class="mui-table-view-cell pay_total">
 				总计：
-				<span class="mui-pull-right"><em><b>0</b>.00</em> 元</span>
-				<span class="mui-posa-right">0 份</span>
+				<span class="mui-pull-right"><em><b>42</b>.20</em> 元</span>
+				<span class="mui-posa-right"><em>5</em> 份</span>
 			</li>
 			
 		</ul>
+		
 
-		<ul class="mui-table-view ">
-			<li class="mui-table-view-cell mui-collapse mui-active">
-				<a class="mui-navigate-right" href="#">联系人</a>
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell">
-						<a class="mui-navigate-right" href="pay_user.html">姓名：<span class="mui-pull-right">jiaojiao</span></a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a class="mui-navigate-right" href="pay_user.html">电话：<span class="mui-pull-right">13730300000</span></a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a class="mui-navigate-right" href="pay_user.html">地址：<span class="mui-pull-right">宝安区 — 张家口桥东</span></a>
-					</li>
-				</ul>
+		<ul class="mui-table-view mui-content-padded">
+			<li class="mui-table-view-divider"><i class="icon icon-xinxi"></i> 配送信息</li>
+
+			<li class="mui-table-view-cell">
+				配送时间：<span class="pay_remark_time">立即配送</span>
+				<button id="demo1" data-options="{}" class="btn mui-btn mui-btn-block datapicker">选择时间</button>
 			</li>
-			
-		</ul>
 
-		<ul class="mui-table-view ">
-			<li class="mui-table-view-cell mui-collapse mui-active">
-				<a class="mui-navigate-right" href="#">配送信息</a>
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell">
-						<a class="mui-navigate-right" href="pay_remark.html">配送时间：<span class="mui-pull-right">2015-08-30 21:00</span></a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a class="mui-navigate-right" href="pay_remark.html">配送备注：<span class="mui-pull-right">不加大蒜，不要辣椒</span></a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a class="mui-navigate-right" href="pay_remark.html">付款方式：<span class="mui-pull-right">货到付款</span></a>
-					</li>
-				</ul>
+			<li class="mui-table-view-cell">
+				备注信息：
+				<textarea rows="2" placeholder="请输入您的备注说明"></textarea>
 			</li>
 		</ul>
-
-		<ul class="mui-table-view ">
-			<li class="mui-table-view-cell mui-collapse mui-active">
-				<a class="mui-navigate-right" href="#">优惠活动</a>
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell">今日特惠：<span class="mui-pull-right">减5</span></li>
-				</ul>
-			</li>
-		</ul>
-				
 
 	</div>
-
-	
-
-	<script src="js/mui.min.js"></script>
-	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-	<script type="text/javascript">
-    	//mui 初始化
-    	mui.init();
-		//通过config接口注入权限验证配置
-		wx.config({
-		    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-		    appId: '', // 必填，公众号的唯一标识
-		    timestamp: '<?php echo time();?>', // 必填，生成签名的时间戳
-		    nonceStr: '<?php echo $nonceStr;?>', // 必填，生成签名的随机串
-		    signature: '<?php echo $signature;?>',// 必填，签名
-		    jsApiList: [] // 必填，需要使用的JS接口列表
-		});
-		//通过ready接口处理成功验证
-		wx.ready(function(){
-			// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后
-		});
-
-	</script>
-
-</body>
-</html>
