@@ -51,8 +51,8 @@ p img {max-width: 100%;height: auto;}
 .mui-table-view-cell .icon-shoucang-selected{position: absolute;right: 10px;width: 30px;height: 30px;top: 50%;margin-top: -15px; line-height: 30px; text-align: center; vertical-align: top;color: #f77320;}
 
 .mui-table-view-cell .count{position: absolute;right: 45px;width: 30px;height: 30px;top: 50%;margin-top: -15px;}
-.mui-table-view-cell .count .mui-numbox{ height: 30px;padding: 0 30px 0 0;width: 0px;}
-.mui-table-view-cell .count .mui-numbox button{width: 30px;}
+.mui-table-view-cell .count .mui-numbox{ height: 30px;padding: 0 30px 0 0;width: 0px;-webkit-transition: all 0.2s ease ;transition: all 0.2s ease ; }
+.mui-table-view-cell .count .mui-numbox button{width: 30px;-webkit-transition: all 0.2s ease ;transition: all 0.2s ease ; }
 .mui-table-view-cell .number .mui-numbox{padding-right: 0;padding-left:0; width: 30px;}
 .mui-table-view-cell .number .mui-numbox input{border-color: transparent!important;background: #f77320;color: #fff;}
 .mui-table-view-cell .number .mui-numbox .mui-numbox-btn-minus{width: 0;}

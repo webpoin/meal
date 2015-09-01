@@ -92,7 +92,40 @@ angular.module('app',['ngRoute', 'LocalStorageModule']).config(['localStorageSer
 
 
 }).controller('MainCtrl', function($scope ,$location, GLOBAL) {
-// 主页
+	// 主页
+
+	var counts = [].slice.call(document.querySelectorAll('.count'),0);
+	document.querySelector(".index").addEventListener('tap', function(e) {
+		var target = e.target;
+		var input;
+		target =  target.className == 'mui-numbox' ? target:target.parentNode.className == 'mui-numbox'? target.parentNode: null;
+
+		counts.map(function(the,idx){
+			the.className = the.querySelector('input').value >0? 'count number':'count';
+		});
+
+
+
+		if(e.target.className == 'mui-numbox-btn-plus'){
+			input = e.target.parentNode.querySelector('input');
+			input.value = parseInt(input.value || 0) +1;
+		}
+
+		if(e.target.className == 'mui-numbox-btn-minus'){
+			input = e.target.parentNode.querySelector('input');
+			input.value = parseInt(input.value || 0) >0 ? parseInt(input.value || 0) -1 : 0;
+		}
+
+		if(!target) return;
+
+		target.parentNode.className = 'count hover';
+	});
+
+	
+
+	mui.init();
+
+
 
 
 }).controller('CollectCtrl', function($scope ,$location, GLOBAL) {
