@@ -9,21 +9,22 @@
 </head>
 <body ng-app="app">
 
-	<header ng-controller="Header" class="mui-bar mui-bar-nav notice">通告栏通知：弹出显示5s后自动收起，如需查看，请在个人中心查看.....</header>
 
-	<nav class="mui-bar gotopay" ng-controller="Subfoot">
-		<div ng-if="status === 'normal'" >
-			<span>共 <b>20</b> 件， 总额：<em>48.00</em> 元</span>
-			<a class="mui-btn mui-btn-warning"  href="#/pay">去结算</a>
-		</div>
-		<form class="pay_submit" action="#/payfor" ng-if="status === 'submit'">
-			<button class="mui-btn">返回上级</button>
-			<button class="mui-btn submit" type="submit">下一步</button>
-		</form>
-		<form class="pay_submit" action="#/" ng-if="status === 'payfor'"> 
-			<button class="mui-btn">返回上级</button>				
-			<button class="mui-btn submit" type="submit" id="alertBtn">确认支付</button>
-		</form>
+	<header class="mui-bar mui-bar-nav hide" ng-controller="Header" ng-class="{'header':show}">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history(-1);"></a>
+		<h1 class="mui-title" ng-bind="header.name"></h1>
+	</header>
+
+	<header ng-controller="Notice" class="mui-bar mui-bar-nav notice">通告栏通知：弹出显示5s后自动收起，如需查看，请在个人中心查看.....</header>
+
+	<nav class="mui-bar hide" ng-controller="Subfoot" ng-class="{'gotopay':show}">
+		<p><i class="icon icon-gouwuche">
+			<span class="mui-badge" ng-bind="total.amount"></span></i> 
+			共 <em ng-bind="total.price"></em> 元</p>
+
+		<a ng-if="status === 'normal'" class="mui-btn mui-btn-warning"  href="#/pay">选好了</a>
+		<a ng-if="status === 'submit'" class="mui-btn mui-btn-warning"  href="#/payfor">下一步</a>
+		<a ng-if="status === 'payfor'" class="mui-btn mui-btn-warning"  href="#/payfor" id="alertBtn">确认支付</a>
 	</nav>
 
 	<nav class="mui-bar footer" ng-controller="Footer">
@@ -36,7 +37,7 @@
 			<span class="mui-tab-label">收藏</span>
 		</a>
 		<a class="mui-item" ng-click="index(2)" ng-class="{'mui-active':idx === 2}">
-			<span class="mui-icon mui-icon-bars"><span class="mui-badge">9</span></span>
+			<span class="mui-icon mui-icon-bars"><span class="mui-badge">3</span></span>
 			<span class="mui-tab-label">订单</span>
 		</a>
 		<a class="mui-item" ng-click="index(3)" ng-class="{'mui-active':idx === 3}">
@@ -49,7 +50,7 @@
 	<div ng-view="" class="mui-content content"></div>
 
 	
-	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<!-- <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
 	<script src="js/mui.min.js"></script>
 	<script src="js/angular.min.js"></script>
 	<script src="js/angular-route.min.js"></script>

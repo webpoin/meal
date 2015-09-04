@@ -1,0 +1,16 @@
+{
+  "name": "data",
+  "version": "0.0.0",
+  "dependencies": {},
+  "repository": {},
+  "devDependencies": {
+    "bufferhelper": "^0.2.0",
+    "express": "^4.13.3",
+    "iconv-lite": "^0.4.11",
+    "line-reader": "^0.2.4",
+    "request": "^2.61.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}
