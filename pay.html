@@ -12,10 +12,10 @@
 		<ul class="mui-table-view mui-table-view-chevron mui-content-padded pay_good">
 			<li class="mui-table-view-divider">
 				<i class="icon icon-shangpin"></i>商品列表
-				<span href="" class="mui-pull-right">商品总额：<em><b>42</b>.20</em> 元</span>
+				<span href="" class="mui-pull-right">商品总额：<em><b ng-bind="price_goods">42.00</b></em> 元</span>
 			</li>
 			
-			<li class="mui-table-view-cell">
+			<li class="mui-table-view-cell" ng-repeat="item in goods track by $index">
 				<h4>猪大肠饭(中)猪大肠饭(中)猪大肠饭(中)</h4>
 				<span><em>15.20</em> 元</span>
 				<div class="mui-numbox"  data-numbox-step='1' data-numbox-min='0'>
@@ -24,7 +24,7 @@
 					<button class="mui-numbox-btn-plus" type="button">+</button>
 				</div>
 			</li>
-			<li class="mui-table-view-cell">
+<!-- 			<li class="mui-table-view-cell">
 				<h4>猪大肠饭(中)</h4>
 				<span><em>15.20</em> 元</span>
 				<div class="mui-numbox"  data-numbox-step='1' data-numbox-min='0'>
@@ -50,7 +50,7 @@
 					<span class="mui-numbox-input">1</span>
 					<button class="mui-numbox-btn-plus" type="button">+</button>
 				</div>
-			</li>
+			</li> -->
 
 		</ul>
 		<ul class="mui-table-view mui-table-view-chevron mui-content-padded pay_prefer">

@@ -1,173 +1,39 @@
 	<div class="mui-segmented-control order_tab" style="margin-bottom: 10px;">
-		<a class="mui-control-item mui-active" href="#item1mobile">未付款(3)</a>
-		<a class="mui-control-item" href="#item2mobile">待发货(3)</a>
-		<!-- <a class="mui-control-item" href="#item3mobile">正在派送</a> -->
-		<a class="mui-control-item" href="#item3mobile">已完成(6)</a>
+		<a class="mui-control-item" ng-repeat="item in classify track by $index" href="#item{{$index}}" ng-class="{'mui-active':$index ==0}">
+			<span ng-bind="item.name"></span>
+			(<b ng-bind="item.total"></b>)
+		</a>
 	</div>
 
-
-	<div id="item1mobile" class="mui-control-content order mui-active">
+	<div class="mui-control-content order" ng-repeat="item in classify track by $index" id="item{{$index}}" ng-class="{'mui-active':$index ==0}">
 		<ul class="mui-table-view">
-			<li class="mui-table-view-cell">
-				<a href="#/order_detail"><img class="mui-media-object mui-pull-left" src="images/muwu.jpg">
+			<li class="mui-table-view-cell" ng-repeat="each in item.data track by $index">
+				<a ng-click="getDetail(each)"><img class="mui-media-object mui-pull-left" src="images/muwu.jpg">
 					<div class="mui-media-body">
-						<h4>肉香满溢比萨，烟笋炒肉，红烧...</h4>
-						<span>共3份，总价 <em>58.00</em> 元</span>
+						<h4 ng-bind="each.name"></h4>
+						<span>共<em ng-bind="each.amount">0</em>份，总价 <em ng-bind="each.price">0.00</em> 元</span>
 						<p style="color:#f00;">支付未完成</p>
 					</div>
 				</a>
-
 				<div class="order_ctl">
-					<button type="button" class="mui-btn mui-btn-warning">去付款</button>
+					<button type="button" class="mui-btn mui-btn-warning" ng-if="each.classify ==0" ng-click="confirm(each)">去付款</button>
+					<span ng-if="each.classify ==1">
+						<button class="mui-btn mui-btn-warning" ng-hide="each.urge" ng-click="urge(each)">催一下</button>
+						<span ng-show="each.urge">催促成功，稍后再试</span>
+					</span>
+
+					<span ng-if="each.classify ==2">
+						<a class="mui-btn mui-btn-warning" ng-if="each.socre == null" ng-click="toScore(each)">评分</a>
+						<span ng-if="each.socre != null">评分：
+							<em ng-class="{'no':each.socre<1}">★</em>
+							<em ng-class="{'no':each.socre<2}">★</em>
+							<em ng-class="{'no':each.socre<3}">★</em>
+							<em ng-class="{'no':each.socre<4}">★</em>
+							<em ng-class="{'no':each.socre<5}">★</em>
+						</span>				
+					</span>
+
 				</div>
-			</li>
-			<li class="mui-table-view-cell">
-				<a href="#/order_detail"><img class="mui-media-object mui-pull-left" src="images/muwu.jpg">
-					<div class="mui-media-body">
-						<h4>肉香满溢比萨，烟笋炒肉，红烧...</h4>
-						<span>共3份，总价 <em>58.00</em> 元</span>
-						<p style="color:#f00;">支付未完成</p>
-					</div>
-				</a>
-
-				<div class="order_ctl">
-					<button type="button" class="mui-btn mui-btn-warning">去付款</button>
-				</div>
-			</li>
-			<li class="mui-table-view-cell">
-				<a href="#/order_detail"><img class="mui-media-object mui-pull-left" src="images/muwu.jpg">
-					<div class="mui-media-body">
-						<h4>肉香满溢比萨，烟笋炒肉，红烧...</h4>
-						<span>共3份，总价 <em>58.00</em> 元</span>
-						<p style="color:#f00;">支付未完成</p>
-					</div>
-				</a>
-
-				<div class="order_ctl">
-					<button type="button" class="mui-btn mui-btn-warning">去付款</button>
-				</div>
-			</li>
-
-
-		</ul>
-	</div>
-	
-	<div id="item2mobile" class="mui-control-content order">
-		<ul class="mui-table-view">
-			<li class="mui-table-view-cell">
-				<a href="#/order_detail"><img class="mui-media-object mui-pull-left" src="images/muwu.jpg">
-					<div class="mui-media-body">
-						<h4>肉香满溢比萨，烟笋炒肉，红烧...</h4>
-						<span>共3份，总价 <em>58.00</em> 元</span>
-						<p style="color:#37BE12;">火速处理中...</p>
-					</div>
-				</a>
-
-				<div class="order_ctl">
-					<button type="button" class="mui-btn mui-btn-warning">催一下</button>
-				</div>
-			</li>
-			<li class="mui-table-view-cell">
-				<a href="#/order_detail"><img class="mui-media-object mui-pull-left" src="images/muwu.jpg">
-					<div class="mui-media-body">
-						<h4>肉香满溢比萨，烟笋炒肉，红烧...</h4>
-						<span>共3份，总价 <em>58.00</em> 元</span>
-						<p style="color:#37BE12;">火速处理中...</p>
-					</div>
-				</a>
-				<div class="order_ctl">催单成功</div>
-			</li>
-			<li class="mui-table-view-cell">
-				<a href="#/order_detail"><img class="mui-media-object mui-pull-left" src="images/muwu.jpg">
-					<div class="mui-media-body">
-						<h4>肉香满溢比萨，烟笋炒肉，红烧...</h4>
-						<span>共3份，总价 <em>58.00</em> 元</span>
-						<p style="color:#37BE12;">火速处理中...</p>
-					</div>
-				</a>
-				<div class="order_ctl">
-					催单成功
-				</div>
-			</li>
-		</ul>
-	</div>
-
-	<div id="item3mobile" class="mui-control-content order">
-		<ul class="mui-table-view">
-			<li class="mui-table-view-cell">
-				<a href="#/order_detail"><img class="mui-media-object mui-pull-left" src="images/muwu.jpg">
-					<div class="mui-media-body">
-						<h4>肉香满溢比萨，烟笋炒肉，红烧...</h4>
-						<span>共3份，总价 <em>58.00</em> 元</span>
-						<p style="color:#999;">交易已完成</p>
-					</div>
-				</a>
-
-				<div class="order_ctl">
-					<a href="#/order_score" class="mui-btn mui-btn-warning">评分</a>
-				</div>
-			</li>
-			<li class="mui-table-view-cell">
-				<a href="#/order_detail"><img class="mui-media-object mui-pull-left" src="images/muwu.jpg">
-					<div class="mui-media-body">
-						<h4>肉香满溢比萨，烟笋炒肉，红烧...</h4>
-						<span>共3份，总价 <em>58.00</em> 元</span>
-						<p style="color:#999;">交易已完成</p>
-					</div>
-				</a>
-
-				<div class="order_ctl">评分：<em class="hot">★</em><em class="hot">★</em><em class="hot">★</em><em class="hot">★</em><em>★</em></div>
-
-			</li>
-			<li class="mui-table-view-cell">
-				<a href="#/order_detail"><img class="mui-media-object mui-pull-left" src="images/muwu.jpg">
-					<div class="mui-media-body">
-						<h4>肉香满溢比萨，烟笋炒肉，红烧...</h4>
-						<span>共3份，总价 <em>58.00</em> 元</span>
-						<p style="color:#999;">交易已完成</p>
-					</div>
-				</a>
-				<div class="order_ctl">评分：<em class="hot">★</em><em class="hot">★</em><em class="hot">★</em><em class="hot">★</em><em>★</em></div>
-			</li>
-			<li class="mui-table-view-cell">
-				<a href="#/order_detail"><img class="mui-media-object mui-pull-left" src="images/muwu.jpg">
-					<div class="mui-media-body">
-						<h4>肉香满溢比萨，烟笋炒肉，红烧...</h4>
-						<span>共3份，总价 <em>58.00</em> 元</span>
-						<p style="color:#999;">交易已完成</p>
-					</div>
-				</a>
-				<div class="order_ctl">评分：<em class="hot">★</em><em class="hot">★</em><em class="hot">★</em><em class="hot">★</em><em>★</em></div>
-			</li>
-			<li class="mui-table-view-cell">
-				<a href="#/order_detail"><img class="mui-media-object mui-pull-left" src="images/muwu.jpg">
-					<div class="mui-media-body">
-						<h4>肉香满溢比萨，烟笋炒肉，红烧...</h4>
-						<span>共3份，总价 <em>58.00</em> 元</span>
-						<p style="color:#999;">交易已完成</p>
-					</div>
-				</a>
-				<div class="order_ctl">评分：<em class="hot">★</em><em class="hot">★</em><em class="hot">★</em><em class="hot">★</em><em>★</em></div>
-			</li>
-			<li class="mui-table-view-cell">
-				<a href="#/order_detail"><img class="mui-media-object mui-pull-left" src="images/muwu.jpg">
-					<div class="mui-media-body">
-						<h4>肉香满溢比萨，烟笋炒肉，红烧...</h4>
-						<span>共3份，总价 <em>58.00</em> 元</span>
-						<p style="color:#999;">交易已完成</p>
-					</div>
-				</a>
-				<div class="order_ctl">评分：<em class="hot">★</em><em class="hot">★</em><em class="hot">★</em><em class="hot">★</em><em>★</em></div>
-			</li>
-			<li class="mui-table-view-cell">
-				<a href="#/order_detail"><img class="mui-media-object mui-pull-left" src="images/muwu.jpg">
-					<div class="mui-media-body">
-						<h4>肉香满溢比萨，烟笋炒肉，红烧...</h4>
-						<span>共3份，总价 <em>58.00</em> 元</span>
-						<p style="color:#999;">交易已完成</p>
-					</div>
-				</a>
-				<div class="order_ctl">评分：<em class="hot">★</em><em class="hot">★</em><em class="hot">★</em><em class="hot">★</em><em>★</em></div>
 			</li>
 		</ul>
 	</div>

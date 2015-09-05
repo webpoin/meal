@@ -2,22 +2,11 @@
 				<div class="mui-scroll-wrapper">
 					<ul class="mui-scroll mui-table-view ">
 
-						<!-- <li class="mui-table-view-cell active">店长推荐<span class="mui-badge mui-badge-danger">1</span></li> -->
+						<!-- <li class="mui-table-view-cell active">店长推荐</li> -->
 
-						<li class="mui-table-view-cell" ng-repeat="item in classify track by $index" ng-class="{'active':item.select}" ng-click="select(item)">{{item.name}}</li>
-					<!-- 	<li class="mui-table-view-cell">零食</li>
-						<li class="mui-table-view-cell">家居用品</li>
-						<li class="mui-table-view-cell">厨具</li>
-						<li class="mui-table-view-cell">假设有六个字</li>
-						<li class="mui-table-view-cell">生鲜特卖</li>
-						<li class="mui-table-view-cell">生鲜特卖</li>
-						<li class="mui-table-view-cell">生鲜特卖</li>
-						<li class="mui-table-view-cell">生鲜特卖</li>
-						<li class="mui-table-view-cell">生鲜特卖</li>
-						<li class="mui-table-view-cell">生鲜特卖</li>
-						<li class="mui-table-view-cell">生鲜特卖</li>
-						<li class="mui-table-view-cell">生鲜特卖</li>
-						<li class="mui-table-view-cell">生鲜特卖</li> -->
+						<li class="mui-table-view-cell" ng-repeat="item in classify track by $index" ng-class="{'active':item.select}" ng-click="select(item)">{{item.name}} 
+							<span class="mui-badge mui-badge-danger" ng-bind="item.count" ng-show="item.count>0"></span>
+						</li>
 					</ul>
 					
 				</div>

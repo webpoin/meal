@@ -15,9 +15,9 @@
 		<h1 class="mui-title" ng-bind="header.name"></h1>
 	</header>
 
-	<header ng-controller="Notice" class="mui-bar mui-bar-nav notice">通告栏通知：弹出显示5s后自动收起，如需查看，请在个人中心查看.....</header>
+	<header ng-controller="Notice" class="mui-bar mui-bar-nav hide" ng-class="{'notice':show}">通告栏通知：弹出显示5s后自动收起，如需查看，请在个人中心查看.....</header>
 
-	<nav class="mui-bar hide" ng-controller="Subfoot" ng-class="{'gotopay':show}">
+	<nav class="mui-bar hide" ng-controller="Subfoot" ng-class="{'gotopay':show &&total.amount>0}">
 		<p><i class="icon icon-gouwuche">
 			<span class="mui-badge" ng-bind="total.amount"></span></i> 
 			共 <em ng-bind="total.price"></em> 元</p>

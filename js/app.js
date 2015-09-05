@@ -74,6 +74,7 @@ angular.module('app',['ngRoute', 'LocalStorageModule']).config(['localStorageSer
 		header: {
 			show: false
 		},
+		cache:{},
 		goods:{
 			data:[],		//数据地址
 			classify:[], 	//首页分类，保存指针
@@ -97,59 +98,155 @@ angular.module('app',['ngRoute', 'LocalStorageModule']).config(['localStorageSer
 
 				/**** 收藏 数据交互 *****/
 				$http({url:'http://localhost:3000/',params:{msg:'{"type":"setCollect","id":"'+item.id+'","value":"'+item.collect+'"}'}});
-
 			},
 			count:function(item,type){
 
 				if(type === 'add'){
 					this.cart.amount = this.cart.amount +1;
 					this.cart.price = (((this.cart.price)*100 + parseFloat(item.price)*100)/100).toFixed(2);
+					this.classify.map(function(i) {i.name === item.classify && (i.count += 1);});
+
 				}else if(type === 'del'){
 					this.cart.amount = this.cart.amount -1;
 					this.cart.price = (((this.cart.price)*100 - parseFloat(item.price)*100)/100).toFixed(2);
+					this.classify.map(function(i) {i.name === item.classify && (i.count -= 1)});
+			}
+
+			},
+			updata:function(){
+				var the = this;
+				// 取商品列表
+				$http({url: 'http://localhost:3000/',params:{msg:'{"type":"getGoods","length":"all"}'}}).success(function(json){
+
+					var tmp = {};
+					if(json.code != 200){return}
+
+					the.data = the.data.concat(json.data);
+
+					the.data.map(function(item){
+						if(tmp[item.classify]){
+							tmp[item.classify].push(item);
+						}else{
+							tmp[item.classify] = [item];
+							the.classify.push({name:item.classify,count:0});
+						}
+
+						item.collect&& the.collect.push(item);
+					});
+
+					the.classify.map(function(item){
+						item.data = tmp[item.name];
+					});
+
+				});
+			}
+		},
+		pay:{
+			goods:[],			//商品列表
+			// coupon:[],			//优惠列表
+			price_coupon:0,		//优惠总价
+			price_total:0,		//最终支付价格
+			price_goods:0,		//商品总价
+			count_coupon:0,		//优惠数量
+			count_total:0,		//全部数量(并没什么软用)
+			count_goods:0,		//商品数量
+			mark_time:'立即配送',	//配送时间
+			mark_info:'',		//备注信息
+			user_name:'',		//联系人姓名
+			user_call:'',		//联系电话
+			user_addr:'',		//联系地址
+			payby:'微信支付',		//支付方式
+			getGoods:function(){
+				// 取所有选中的商品
+				var tmp = [],price = 0;count=0;
+
+				if(this.goods.length ===0 ){
+					res.goods.data.map(function(item,idx){
+						item.count && item.count>0 && tmp.push(item);
+						// console.log(item.count)
+						// price = ((100*price+ 100*parseFloat(item.price))/100).toFixed(2);
+						// count += item.count;
+					});
+					this.goods = this.goods.concat(tmp);
 				}
 
-				// console.log(this.cart.price)
+				return this.goods;
+				// this.price_goods = price;
+				// this.count_goods = count;
 
-				// delete obj.name;
+			},
+			getCoupon:function(){
+				var the = this;
 
-				// // 添加
-				// if(item.count == 1;){
-				// 	the.collect.unshift(item);
-				// // 删除
-				// }else if(item.count == 0;){
-				// 	the.collect.map(function(i, idx) {i === item && the.collect.splice(idx, 1)});
-				// }
+				if(!the.coupon){
+					// 取所有可用优惠信息
+					$http({url: 'http://localhost:3000/',params:{msg:'{"type":"getCoupon"}'}}).success(function(json){
+						if(json.code != 200){return}
+						the.coupon = json.data;
+					});
+				}
+				return the.coupon;
 
+			},
+			count:function(){
+				// 数值计算
+			}
+		},
+		order:{
+			data:[],			//数据
+			classify:[],		//分类
+			detail:{},			//详情
+			getDetail:function(item){
+				var the = this;
+				// 取订单详情
+				$http({url: 'http://localhost:3000/',params:{msg:'{"type":"getOrderDetail","id":"'+item.id+'"}'}}).success(function(json){
+					if(json.code != 200){return}
+					the.detail = json.data;
+				})
+			},
+			updata:function(){	//更新
+				var the = this;
+				// 取订单列表
+				$http({url: 'http://localhost:3000/',params:{msg:'{"type":"getOrder","length":"all"}'}}).success(function(json){
+					var tmp = {};
+					if(json.code != 200){return}
+
+					the.data = the.data.concat(json.data);
+					the.data.map(function(item){
+						tmp[item.classify] = tmp[item.classify] || [];
+						tmp[item.classify].push(item);
+					});
+
+					the.classify[0] = {name:'未付款',total:tmp[0].length,data:tmp[0]}
+					the.classify[1] = {name:'未付款',total:tmp[1].length,data:tmp[1]}
+					the.classify[2] = {name:'未付款',total:tmp[2].length,data:tmp[2]}
+
+				});
+			},
+			payfor:function(item){
+
+				// 跳转支付
+				// ？？？？
+
+			},
+			setScore :function(item){
+				var the = this;
+				// 设置评级
+				$http({url:'http://localhost:3000/',params:{msg:'{"type":"getScore","id":"'+item.id+'","value":"'+item.score+'"}'}}).success(function(json){
+					if(json.code != 200){return}
+					// 更新订单
+					the.updata();
+				})
 
 			}
 		}
 	}
 
 
-	// 取商品列表
-	$http({url: 'http://localhost:3000/',params:{msg:'{"type":"getGoods","length":"all"}'}}).success(function(json){
 
-		var tmp = {},goods = res.goods;
+	// 初始化更新一次商品
+	res.goods.updata();
 
-		if(json.code != 200){return}
-
-		goods.data = goods.data.concat(json.data).map(function(item){
-			if(tmp[item.classify]){
-				tmp[item.classify].push(item);
-			}else{
-				tmp[item.classify] = [item];
-				goods.classify.push({name:item.classify});
-			}
-
-			item.collect&& goods.collect.push(item);
-		});
-
-		goods.classify.map(function(item){
-			item.data = tmp[item.name];
-		});
-
-	});
 
 
 	return res;
@@ -174,21 +271,19 @@ angular.module('app',['ngRoute', 'LocalStorageModule']).config(['localStorageSer
 	}); 
 
 
-}).controller('Notice', function($scope ,$location, GLOBAL) {
+}).controller('Notice', function($scope ,$location,$timeout, GLOBAL) {
 	// 公告
-
+	$scope.show = true;
+	$timeout(function(){$scope.show = false;},5000);
 
 }).controller('Footer', function($scope ,$location, GLOBAL) {
 	// 尾部
 	var nav = 'main,collect,order,user'.split(',');
-
-		
 	$scope.$on('$locationChangeStart', function(){
 		nav.map(function(a,b,c){
 			$scope.idx =$location.$$path.indexOf(a) >0 ? b: $scope.idx;
 		});
 	}); 
-
 
 	$scope.index = function(idx){
 		$location.path('/'+nav[idx]);
@@ -260,7 +355,6 @@ angular.module('app',['ngRoute', 'LocalStorageModule']).config(['localStorageSer
 	})();
 
 
-
 }).controller('CollectCtrl', function($scope ,$location, GLOBAL) {
 
 	$scope.list = GLOBAL.goods.collect;
@@ -281,9 +375,50 @@ angular.module('app',['ngRoute', 'LocalStorageModule']).config(['localStorageSer
 	}
 
 
+}).controller('OrderCtrl', function($scope ,$http,$location,$timeout, GLOBAL) {
 
-}).controller('OrderCtrl', function($scope ,$location, GLOBAL) {
-// 订单
+	// 订单
+	GLOBAL.order.updata();
+	$scope.classify = GLOBAL.order.classify;
+	$scope.detail = GLOBAL.order.detail;
+	$scope.cache = GLOBAL.cache;
+
+	// 点击详情
+	$scope.getDetail = function(item){
+		GLOBAL.order.getDetail(item);
+		$location.path('/order_detail');
+	}
+
+	// 去付款
+	$scope.confirm =  function(item) {
+		confirm('您预订的餐点共 '+item.amount+' 份，\n需支付'+item.price+'元，\n点击确认跳转支付') && GLOBAL.order.payfor(item);
+	}
+
+	// 催一下
+	$scope.urge = function(item){
+		item.urge = true;
+
+		$timeout(function(){
+			item.urge = false;
+		},10000);	
+	}
+
+	// 跳转到评价页面
+	$scope.toScore = function(item){
+		GLOBAL.cache = item;
+		$location.path('/order_score');
+	}
+
+	// 点击星形交互
+	$scope.changeScore = function(idx){
+		$scope.cache.socre = idx;
+	}
+
+	// 确定修改评价
+	$scope.setScore = function(){
+		GLOBAL.order.setScore($scope.cache);
+		$location.path('/order');
+	}
 
 
 }).controller('UserCtrl', function($scope ,$location, GLOBAL) {
@@ -294,20 +429,20 @@ angular.module('app',['ngRoute', 'LocalStorageModule']).config(['localStorageSer
 // 用户信息修改
 
 
-
-
-
-
 }).controller('PayCtrl', function($scope ,$location, GLOBAL) {
-// 支付
+	
+	// 支付
+	// GLOBAL.pay.
+	$scope.goods = GLOBAL.pay.getGoods();
+	$scope.coupon = GLOBAL.pay.getCoupon();
+	
+
+	// $scope
 
 
 
 }).controller('PayforCtrl', function($scope ,$location, GLOBAL) {
 // 支付确认
-
-
-
 
 	document.getElementById("alertBtn").addEventListener('tap', function() {
 		mui.confirm('您预订的餐点共 3 份，\n需支付12.30元，\n点击确认跳转支付', 'Hello MUI', ['确定','取消'], function(e) {

@@ -1,5 +1,5 @@
 
-	<div class="mui-segmented-control order_tab ">
+	<div class="mui-segmented-control order_tab">
 		<a class="mui-control-item " href="#item1">订单状态</a>
 		<a class="mui-control-item mui-active" href="#item2">订单详情</a>
 	</div>	
@@ -8,39 +8,19 @@
 	<div class="mui-control-content order-widget-orderhistory" id="item1">
 		<div data-node="timeLine" class="timeline"></div>
 		<div class="relative-wrapper">
-			<div class="item">
+			
+			<div class="item" ng-repeat="item in detail.step track by $index">
 				<div class="status-icon">
-					<span class="-mark"><i class="icon icon-lianxirenzheng"></i></span>
+					<span class="myline -mark"><i class="icon {{['icon-lianxirenzheng','icon-fukuan','icon-quxiao'][item.type]}}"></i></span>
 				</div>
 				<div class="status-card">
 					<div class="card-arrow"></div>
 					<div class="card-content">
-						<p class="big">订单提交成功<span>2015.09.01 22:44</span></p>
-						<p class="small">订单编号：14412050762218</p>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="status-icon">
-					<span class="myline -mark"><i class="icon icon-fukuan"></i></span>
-				</div>
-				<div class="status-card">
-					<div class="card-arrow"></div>
-					<div class="card-content">
-						<p class="big">待支付<span>2015.09.01 22:44</span></p>
-						<p class="small">请在提交订单后15分钟内完成支付</p>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="status-icon">
-					<span class="myline -mark"><i class="icon icon-quxiao"></i></span>
-				</div>
-				<div class="status-card">
-					<div class="card-arrow"></div>
-					<div class="card-content">
-						<p class="big">订单已取消<span>2015.09.01 23:00</span></p>
-						<p class="small">15分钟内未支付已取消</p>
+						<p class="big">
+							{{['订单提交成功','待支付','取消'][item.type]}}
+							<span ng-bind="item.time"></span>
+						</p>
+						<p class="small" ng-bind="item.msg"></p>
 					</div>
 				</div>
 			</div>
@@ -52,41 +32,25 @@
 		<ul class="mui-table-view mui-table-view-chevron">
 			<li class="mui-table-view-divider">
 				<i class="icon icon-shangpin"></i> 商品列表
-				<span href="" class="mui-pull-right">商品总额：<em><b>42</b>.20</em> 元</span>
+				<span href="" class="mui-pull-right">商品总额：<em><b ng-bind="detail.goods_price">0</b></em> 元</span>
 			</li>
-			
-			<li class="mui-table-view-cell">
-				猪大肠饭(中)
-				<span class="mui-pull-right"><em>15.20</em> 元</span>
-				<span class="mui-posa-right">2 份</span>
-			</li>
-			<li class="mui-table-view-cell">
-				猪大肠饭(中)
-				<span class="mui-pull-right"><em>15.20</em> 元</span>
-				<span class="mui-posa-right">2 份</span>
-			</li>
-			<li class="mui-table-view-cell">
-				猪大肠饭(中)
-				<span class="mui-pull-right"><em>15.20</em> 元</span>
-				<span class="mui-posa-right">2 份</span>
+			<li class="mui-table-view-cell" ng-repeat="item in detail.goods track by $index">
+				{{item.name}}
+				<span class="mui-pull-right"><em ng-bind="item.price">0.00</em> 元</span>
+				<span class="mui-posa-right">{{item.amount}} 份</span>
 			</li>
 		</ul>
 
 		<ul class="mui-table-view pay_prefer">
 			<li class="mui-table-view-divider">
 				<i class="icon icon-youhui"></i> 优惠活动
-				<span href="" class="mui-pull-right ">享受优惠：<em><b>10</b>.00</em> 元</span>
+				<span href="" class="mui-pull-right ">享受优惠：<em ng-bind="detail.coupon_price">0.00</em> 元</span>
 			</li>
 			
-			<li class="mui-table-view-cell mui-left">
-				使用<em> [5元] </em>优惠券 
-				<span class="mui-pull-right">省 <b>5</b> 元</span>
+			<li class="mui-table-view-cell mui-left" ng-repeat="item in detail.coupon track by $index">
+				{{item.name}}
+				<span class="mui-pull-right">省 <b ng-bind="item.price">0</b> 元</span>
 			</li>
-			<li class="mui-table-view-cell mui-left">
-				使用积分抵扣现金
-				<span class="mui-pull-right">使用积分 <b>5</b> 个</span>
-			</li>
-
 		</ul>
 
 		<ul class="mui-table-view">
@@ -94,27 +58,27 @@
 
 			<li class="mui-table-view-cell">
 				<i class="icon icon-crmtubiaohuaban35fuben3773"></i>收货人
-				<span class="mui-pull-right">jiaojiao</span>
+				<span class="mui-pull-right" ng-bind="detail.user_name"></span>
 			</li>
 			<li class="mui-table-view-cell">
 				<i class="icon icon-shouji"></i>联系电话
-				<span class="mui-pull-right">13730300000</span>
+				<span class="mui-pull-right" ng-bind="detail.user_phone"></span>
 			</li>
 			<li class="mui-table-view-cell">
 				<i class="icon icon-dizhi"></i>联系地址
-				<span class="mui-pull-right">地址一</span>
+				<span class="mui-pull-right" ng-bind="detail.user_addr">地址</span>
 			</li>
 			<li class="mui-table-view-cell">
 				<i class="icon icon-shijian"></i>配送时间
-				<span class="mui-pull-right">立即派送</span>
+				<span class="mui-pull-right" ng-bind="detail.time_claim">立即派送</span>
 			</li>
 			<li class="mui-table-view-cell">
 				<i class="icon icon-beizhu"></i>备注信息
-				<span class="mui-pull-right">要个袋子</span>
+				<span class="mui-pull-right" ng-bind="detail.remark"></span>
 			</li>
 			<li class="mui-table-view-cell">
 				<i class="icon icon-fukuan"></i>支付方式
-				<span class="mui-pull-right">微信支付</span>
+				<span class="mui-pull-right" ng-bind="detail.pay_type"></span>
 			</li>
 
 

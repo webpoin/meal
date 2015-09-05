@@ -1,7 +1,9 @@
 
-@import url(http://at.alicdn.com/t/font_1441299450_3701506.css);
+/*@import url(http://at.alicdn.com/t/font_1441299450_3701506.css);*/
 
 i.icon{display: inline-block;font-style: normal; font-family: iconfont;}
+
+
 
 body{font-size: 12px;}
 p img {max-width: 100%;height: auto;}
@@ -17,7 +19,7 @@ p img {max-width: 100%;height: auto;}
 .mui-numbox span.mui-numbox-input{display: block; color: #333 !important;line-height: 28px;font-size: 16px;background: #fff;}
 .mui-btn-warning, .mui-btn-yellow{border:none;background-color: #f77320;}
 .mui-bar{box-shadow: 0 0 1px rgba(200, 200, 200, 0.85);-webkit-box-shadow:0 0 1px rgba(200, 200, 200, 0.85);}
-
+.mui-bar-nav~.mui-content{padding-top: 0;-webkit-transition: all 0.2s ease ;transition: all 0.2s ease ; }
 
 
 .hide{display: none;}
@@ -25,8 +27,8 @@ p img {max-width: 100%;height: auto;}
 
 /*header && footer*/
 .header{display: block;}
-.notice{height: 30px;line-height: 30px;color: #999;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;erflow: ellipsis;}
-.footer{  bottom: 0;display: table;width: 100%;height: 50px;padding: 0;table-layout: fixed;border-top: 0;border-bottom: 0;-webkit-touch-callout: none;}
+.notice{display: block; height: 30px;line-height: 30px;color: #999;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;erflow: ellipsis;}
+.footer{bottom: 0;display: table;width: 100%;height: 50px;padding: 0;table-layout: fixed;border-top: 0;border-bottom: 0;-webkit-touch-callout: none;}
 .footer a{display: table-cell;overflow: hidden;width: 1%;height: 50px;text-align: center;vertical-align: middle;white-space: nowrap;text-overflow: ellipsis;erflow: ellipsis;color: #929292;}
 .footer a .mui-icon{font-size: 24px;position: relative;z-index: 20;top: 3px;width: 24px;height: 24px;padding-top: 0;padding-bottom: 0;}
 .footer a .mui-icon~.mui-tab-label{font-size: 11px;display: block;overflow: hidden;text-overflow: ellipsis;erflow: ellipsis;}
@@ -45,7 +47,7 @@ p img {max-width: 100%;height: auto;}
 
 /*home*/
 
-.index{position: absolute;top: 0;right: 0;left: auto; width: 75%;bottom: 0;padding-bottom: 0; overflow: auto;}
+.index{position: absolute;top: 0;right: 0;left: auto; width: 75%;bottom: 0;padding-bottom: 0; overflow: auto;-webkit-transition: all 0.2s ease ;transition: all 0.2s ease ; }
 .index .mui-table-view .mui-media-object{height: 50px;max-width: 50px;}
 .index .mui-media-body ,
 .order .mui-media-body ,
@@ -77,11 +79,11 @@ p img {max-width: 100%;height: auto;}
 .index .count.number ,.collect .count.number {padding-left: 30px;width: 90px;}
 
 
-.sidebar {position: absolute; left: 0;top: 0;width: 25%;visibility:visible;z-index: 1;background: #f1f1f1;border-right: 1px solid #ddd;color: #666; }
+.sidebar {position: absolute; left: 0;top: 0;width: 25%;min-height: inherit; visibility:visible;z-index: 1;background: #f1f1f1;border-right: 1px solid #ddd;color: #666; -webkit-transition: all 0.2s ease ;transition: all 0.2s ease ; }
 .sidebar .mui-scroll-wrapper{overflow: auto;padding-right: 1px;}
 .sidebar .mui-table-view{background: none;}
 .sidebar .mui-table-view-cell:after{left: 0;}
-.sidebar .mui-table-view-cell>.mui-badge{right: auto;margin-left: -2px;padding: 0;padding: 0 3.5px;height: 14px;text-align: center;line-height: 14px;margin-top: -10px;background-color: #f00;}
+.sidebar .mui-table-view-cell>.mui-badge{left: auto; right: 6px;margin-left: -2px;padding: 0;padding: 0 3.5px;height: 14px;text-align: center;line-height: 14px;margin-top: -10px;background-color: #f00;}
 .sidebar li{width: 100%;}
 .sidebar .mui-table-view-cell:after{background-color: #d7d7d7;}
 .sidebar li.active{position: relative; background: #fff;border-left: 2px solid #f77320;padding-left: 13px; overflow: visible;color: #f77320;}
@@ -101,7 +103,7 @@ p img {max-width: 100%;height: auto;}
 .order .mui-media-body {line-height: 18px;}
 .order .mui-table-view-cell .order_ctl{position: absolute;bottom: 10px;right: 15px;}
 .order .mui-table-view-cell .order_ctl em{font-style: normal;}
-.order .mui-table-view-cell .order_ctl em.hot{color: #f77320;}
+.order .mui-table-view-cell .order_ctl em.no{color: #999;}
 .order .mui-table-view-cell .order_ctl a{line-height: 25px;color: #999;margin: 0 8px;}
 
 .order .mui-table-view-cell .mui-btn{padding: 3px 6px;font-size: 12px;}
@@ -159,7 +161,8 @@ p img {max-width: 100%;height: auto;}
 .order_score h1 em{font-size: 50px;font-style: normal;color: #f77320;}
 .order_score h1 small{display: inline-block;margin-top: 20px;text-align: left;line-height: 18px;}
 .order_score h1 small em{font-size: 12px;}
-.order_score h3{margin: 20px 0; text-align: center;font-size: 30px;color: #ddd;}
+.order_score h3{margin: 20px 0; text-align: center;font-size: 30px;color: #f77320;}
+.order_score h3 b.no{color: #ddd;}
 .order_score p{font-size: 12px;text-align: center;color: #ccc;}
 .order_score_btn{margin-top: 30px; text-align: center;margin-bottom: 20px;}
 .order_score_btn a{margin: 0 5px;}
@@ -177,6 +180,7 @@ p img {max-width: 100%;height: auto;}
 .order-widget-orderhistory .status-icon span {display: block;width: 25px;height: 25px;border-radius: 12px;background: #f77320;margin-left: 12px;text-align: center;line-height: 25px;}
 .order-widget-orderhistory .status-icon span.-mark i {font-size: 14px;color: #fff;}
 .order-widget-orderhistory .status-icon .myline::before {content: "";position: absolute;width: 2px;height: 65px;background-color: #f77320;left: 23px;top: -43px}
+.order-widget-orderhistory .item:first-child .myline::before{display: none;}
 .order-widget-orderhistory .status-card {-moz-box-flex: 1;-webkit-box-flex: 1;box-flex: 1;position: relative;margin-left: 18px;border: 1px solid #E2E2E2;background: #fff}
 .order-widget-orderhistory .status-card .card-arrow {background-color: #fff;height: 10px;width: 10px;border-left: #E2E2E2 solid 1px;border-top: #E2E2E2 solid 1px;-webkit-transform: rotate(-45deg);transform: rotate(-45deg);position: absolute;left: -6px;top: 25px}
 .order-widget-orderhistory .status-card .card-content {padding: 10px;min-height: 40px}
@@ -314,6 +318,6 @@ p img {max-width: 100%;height: auto;}
 .header ~ .notice ~ .content{padding-top: 75px;}
 .header ~ .notice ~ .content .sidebar{top: 75px;}
 .header ~ .notice ~ .content .index{top: 75px;}
-
+.header ~ .content{padding-top: 45px;}
 
 
